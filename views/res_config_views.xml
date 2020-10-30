@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_config_settings_inherit" model="ir.ui.view">
+            <field name="name">account settings inherit</field>
+            <field name="model">account.config.settings</field>
+            <field name="inherit_id" ref="account.view_account_config_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="//separator[@name='analytic_account']" position="before">
+                    <group>
+                        <label for="id" string="Mtiba"/>
+                        <div name="mtiba_config">
+                            <div>
+                                <label for="mtiba_username"/>
+                                <field name="mtiba_username" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="mtiba_password"/>
+                                <field name="mtiba_password" password="True" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="mtiba_payment_term_id"/>
+                                <field name="mtiba_payment_term_id" password="True" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
