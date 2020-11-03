@@ -58,5 +58,5 @@ class AccountInvoice(models.Model):
             _logger.info('Invoice {name}: Payload - {payload}'.format(name=invoice.number, payload=params))
             response = self.env['mtiba']._do_request('/invoices/{treatment_code}?action=Submit'.format(treatment_code=invoice.treatment_code), params=params, headers=headers)
             invoice.message_post(body='Mtiba Response: {msg}'.format(msg=response.get('message')))
-            _logger.info('Invoice {name}: Response - {mtiba_response}'.format(name=invoice.number, mtiba_response=response.content))
+            _logger.info('Response from invoice {name} submission action: {resp}'.format(name=invoice.number, resp=response))
         return res
