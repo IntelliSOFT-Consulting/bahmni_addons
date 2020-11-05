@@ -17,51 +17,51 @@ class AccountInvoice(models.Model):
         for invoice in self:
             headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer {token}'.format(token=self.env.user.company_id.mtiba_token or '')}
             params = {
-                'invoice': {
-                    'treatmentCode': invoice.treatment_code,
-                    'externalTreatmentCode': '',
-                    'createdBy': invoice.create_uid.name,
-                    'createdOn': datetime.datetime.strptime(invoice.create_date, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d'),
-                    'items': [],
+                "invoice": {
+                    "treatmentCode": invoice.treatment_code,
+                    "externalTreatmentCode": "",
+                    "createdBy": invoice.create_uid.name,
+                    "createdOn": datetime.datetime.strptime(invoice.create_date, "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d"),
+                    "items": [],
                 },
-                'payments': [
+                "payments": [
                     {
-                        'type': 'Benefit',
-                        'total': {
-                            'currency': invoice.currency_id.name,
-                            'amount': invoice.amount_total,
+                        "type": "Benefit",
+                        "total": {
+                            "currency": invoice.currency_id.name,
+                            "amount": invoice.amount_total,
                         }
                     },
                     {
-                        'type': 'Cash',
-                        'total': {
-                            'currency': invoice.currency_id.name,
-                            'amount': 0,
+                        "type": "Cash",
+                        "total": {
+                            "currency": invoice.currency_id.name,
+                            "amount": 0,
                         }
                     },
                 ],
-                'diagnosis': [
+                "diagnosis": [
                     {
-                      'scheme': 'SCM123',
-                      'code': 'A001',
-                      'description': 'General',
+                      "scheme": "SCM123",
+                      "code": "A001",
+                      "description": "General",
                     }
                 ],
-                'notes': 'Doctors notes',
+                "notes": "Doctors notes",
             }
             for line in invoice.invoice_line_ids:
-                params['invoice']['items'].append({
-                    'scheme': 'SCM123',
-                    'code': line.product_id.default_code or '',
-                    'description': line.name,
-                    'price': {
-                        'currency': invoice.currency_id.name,
-                        'amount': line.price_unit,
+                params["invoice"]["items"].append({
+                    "scheme": "SCM123",
+                    "code": line.product_id.default_code or "",
+                    "description": line.name,
+                    "price": {
+                        "currency": invoice.currency_id.name,
+                        "amount": line.price_unit,
                     },
-                    'quantity': line.quantity,
-                    'category': line.product_id.categ_id.name,
-                    'status': 'SUBMITTED',
-                    'externalCode': '',
+                    "quantity": line.quantity,
+                    "category": line.product_id.categ_id.name,
+                    "status": "SUBMITTED",
+                    "externalCode": "",
                 })
             _logger.info('Invoice {name}: Payload - {payload}'.format(name=invoice.number, payload=params))
             response = self.env['mtiba']._do_request('/invoices/{treatment_code}?action=Submit'.format(treatment_code=invoice.treatment_code), params=params, headers=headers)
