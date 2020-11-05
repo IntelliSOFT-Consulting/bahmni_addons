@@ -40,6 +40,14 @@ class AccountInvoice(models.Model):
                         }
                     },
                 ],
+                'diagnosis': [
+                    {
+                      'scheme': 'SCM123',
+                      'code': 'A001',
+                      'description': 'General',
+                    }
+                ],
+                'notes': 'Doctors notes',
             }
             for line in invoice.invoice_line_ids:
                 params['invoice']['items'].append({
@@ -48,7 +56,7 @@ class AccountInvoice(models.Model):
                     'description': line.name,
                     'price': {
                         'currency': invoice.currency_id.name,
-                        'amount': line.price_subtotal,
+                        'amount': line.price_unit,
                     },
                     'quantity': line.quantity,
                     'category': line.product_id.categ_id.name,
