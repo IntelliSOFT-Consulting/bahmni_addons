@@ -21,9 +21,9 @@ class Mtiba(models.AbstractModel):
             if type.upper() == 'GET':
                 pass
             elif type.upper() == 'POST':
-                r = requests.post(preuri + uri, data=json.dumps(params), headers=headers)
-            response = ast.literal_eval(werkzeug.utils.unescape(r.content.decode() or '{}').replace('null', '\"null\"'))
-            if response.get('status') == 403:
+                response = requests.post(preuri + uri, data=json.dumps(params), headers=headers)
+#            response = ast.literal_eval(werkzeug.utils.unescape(r.content.decode() or '{}').replace('null', '\"null\"'))
+            if response.status_code == 403:
                 self._set_token(uri, params=params, headers=headers, type=type)
                 headers['Authorization'] = 'Bearer {token}'.format(token=self.env.user.company_id.mtiba_token)
                 return self._do_request(uri, params=params, headers=headers, type=type)
