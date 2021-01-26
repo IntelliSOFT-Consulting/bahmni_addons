@@ -21,17 +21,17 @@ Once you find it, install it
 
 ## Configure the module
 
-GOt settings --> Parametes --> System Parameters
+Go to `Settings --> Parameters --> System Parameters`
 
 Check tha mtiba-base.url parameter has been setup proprtly
 
 ## Setup m-tiba credentials
 
-Go to accounting --> Settings
+Go to `Accounting --> Settings`
 
-Set Mtiba username and password
+Set `Mtiba username` and `Mtiba password`
 
-Set payment term to "Mtiba". Create one if it doesn't exist
+Set `Payment terms` to "Mtiba". Create one if it doesn't exist
 
 Apply
 
