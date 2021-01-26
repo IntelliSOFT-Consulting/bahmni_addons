@@ -7,5 +7,4 @@
 `chown odoo.odoo -Rf bahmni_mtiba`
 
 Restart the odoo service 
-
-`service odoo restart` 
+`sudo service odoo restart` 
