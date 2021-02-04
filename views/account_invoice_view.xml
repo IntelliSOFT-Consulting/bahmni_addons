@@ -7,7 +7,8 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="treatment_code" required="True" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                    <field name="treatment_code" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                    <field name="mtiba_transaction_identity"/>
                 </field>
             </field>
         </record>

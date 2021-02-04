@@ -11,6 +11,14 @@
                         <label for="id" string="Mtiba"/>
                         <div name="mtiba_config">
                             <div>
+                                <label for="mtiba_username_get"/>
+                                <field name="mtiba_username_get" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="mtiba_password_get"/>
+                                <field name="mtiba_password_get" password="True" class="oe_inline"/>
+                            </div>
+                            <div>
                                 <label for="mtiba_username"/>
                                 <field name="mtiba_username" class="oe_inline"/>
                             </div>

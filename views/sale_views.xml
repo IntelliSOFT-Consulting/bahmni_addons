@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="treatment_code" required="True" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"/>
+                    <field name="treatment_code" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"/>
                 </field>
             </field>
         </record>
