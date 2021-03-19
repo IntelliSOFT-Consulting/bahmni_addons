@@ -23,11 +23,13 @@ Once you find it, install it
 
 Go to `Settings --> Parameters --> System Parameters`
 
-Check tha mtiba-base.url parameter has been setup proprtly
+Check tha mtiba-base.url parameter has been setup properly
 
 ## Setup m-tiba credentials
 
 Go to `Accounting --> Settings`
+
+Set `Mtiba username (GET)` and `Mtiba password (GET)` -- Use OpenMRS login credentials
 
 Set `Mtiba username` and `Mtiba password`
 
