@@ -70,6 +70,6 @@ class AccountInvoice(models.Model):
                 if response.get('id'):
                     invoice.write({'mtiba_transaction_identity': str(response['id'])})
                 else:
-                    raise ValidationError(_('Unable to register invoice. {msg}'.format(msg=response.get('message', ''))))
+                    raise ValidationError(_('Unable submit invoice to MTIBA. {msg}'.format(msg=response.get('message', ''))))
                 _logger.info('Response from invoice {name} submission action: {resp}'.format(name=invoice.number, resp=response))
         return super(AccountInvoice, self).invoice_validate()
