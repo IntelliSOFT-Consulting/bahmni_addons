@@ -20,7 +20,8 @@ class AccountInvoice(models.Model):
                 headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer {token}'.format(token=self.env.user.company_id.mtiba_token or '')}
                 params = {
                     'invoice': {
-                        'treatmentCode': invoice.treatment_code,
+                        'invoiceNumber': 'INV' + invoice.treatment_code,
+                        # 'treatmentCode': invoice.treatment_code,
                         'externalTreatmentCode': '',
                         'createdBy': invoice.create_uid.name,
                         'createdOn': datetime.datetime.strptime(invoice.create_date, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d'),
@@ -30,23 +31,23 @@ class AccountInvoice(models.Model):
                         {
                             'type': 'Benefit',
                             'total': {
-                                'currency': invoice.currency_id.name,
+                                'currency': 'KES',# invoice.currency_id.name,
                                 'amount': invoice.amount_total,
                             }
                         },
                         {
                             'type': 'Cash',
                             'total': {
-                                'currency': invoice.currency_id.name,
+                                'currency': 'KES', # invoice.currency_id.name,
                                 'amount': 0,
                             }
                         },
                     ],
                     'diagnosis': [
                         {
-                          'scheme': 'SCM123',
-                          'code': 'A001',
-                          'description': 'General',
+                          'scheme': 'GOP',
+                          'code': 'Z02.9',
+                          'description': 'Encounter for examination and observation for other reasons',
                         }
                     ],
                     'notes': 'Doctors notes',
@@ -57,7 +58,7 @@ class AccountInvoice(models.Model):
                         'code': line.product_id.default_code or '',
                         'description': line.name,
                         'price': {
-                            'currency': invoice.currency_id.name,
+                            'currency': 'KES', # invoice.currency_id.name,
                             'amount': line.price_unit,
                         },
                         'quantity': line.quantity,
