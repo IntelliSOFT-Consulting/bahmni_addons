@@ -26,7 +26,7 @@ class Mtiba(models.AbstractModel):
                 r = requests.get(preuri_get + uri, params=params, auth=HTTPBasicAuth(mtiba_username_get, mtiba_password_get))
             elif type.upper() == 'POST':
                 r = requests.post(preuri + uri, data=json.dumps(params), headers=headers)
-            if r.status_code == 403:
+            if r.status_code == 403 or r.status_code == 401:
                 self._set_token(uri, params=params, headers=headers, type=type)
                 headers['Authorization'] = 'Bearer {token}'.format(token=self.env.user.company_id.mtiba_token)
                 return self._do_request(uri, params=params, headers=headers, type=type)
