@@ -23,7 +23,7 @@ Once you find it, install it
 
 Go to `Settings --> Parameters --> System Parameters`
 
-Check tha mtiba-base.url parameter has been setup properly
+Check tha `mtiba-base.url` parameter has been setup properly
 
 ## Setup m-tiba credentials
 
